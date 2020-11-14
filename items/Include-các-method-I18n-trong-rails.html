@@ -20,23 +20,20 @@
   <h1 class="title"><a href="/">Today I Learned</a></h1>
   <div class="item">
     <h2 class="title">
-      <a href="/items/Xem-các-thư-mục-được-autoload-trong-rails.html">Xem các thư mục được autoload trong rails</a>
+      <a href="/items/Include-các-method-I18n-trong-rails.html">Include các method I18n trong rails</a>
     </h2>
     <div class="content">
-      <p>Gọi hàm sau</p>
+      <p>Trong class include module <code>ActionView::Helpers::TranslationHelper</code></p>
 
-<pre><code class="rb">ActiveSupport::Dependencies.autoload_paths
-</code></pre>
-
-<p>Thêm thư mục autoload, trong file: <code>config/application.rb</code></p>
-
-<pre><code class="rb">config.autoload_paths &lt;&lt; Rails.root.join(&quot;app/builders&quot;)
+<pre><code>class A
+  include ActionView::Helpers::TranslationHelper
+end
 </code></pre>
 
     </div>
     <div class="footer">
       <div class="created-at">
-        13/11/2020
+        14/11/2020
       </div>
     </div>
   </div>
