@@ -1,65 +1,80 @@
-/* line 1, /home/hungk/Desktop/til_server/app/assets/stylesheets/scaffolds.scss */
+/* line 1, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* line 7, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 12, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
 body {
+  font-size: 14px;
   background-color: #fff;
   color: #333;
   font-family: 'Roboto', verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  padding: 2em;
 }
 
-/* line 9, /home/hungk/Desktop/til_server/app/assets/stylesheets/scaffolds.scss */
+/* line 23, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
 p, ol, ul, td {
   font-family: 'Roboto', verdana, arial, helvetica, sans-serif;
   line-height: 18px;
 }
 
-/* line 14, /home/hungk/Desktop/til_server/app/assets/stylesheets/scaffolds.scss */
+/* line 28, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
 pre {
   background-color: #eee;
   font-size: 13px;
   margin: 1em 0;
 }
 
-/* line 20, /home/hungk/Desktop/til_server/app/assets/stylesheets/scaffolds.scss */
+/* line 34, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
 code {
   background: #def;
   padding: 2px;
 }
 
-/* line 25, /home/hungk/Desktop/til_server/app/assets/stylesheets/scaffolds.scss */
+/* line 39, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
 a {
   text-decoration: none;
   color: #000;
 }
 
-/* line 30, /home/hungk/Desktop/til_server/app/assets/stylesheets/scaffolds.scss */
+/* line 44, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
 th {
   padding-bottom: 5px;
 }
 
-/* line 34, /home/hungk/Desktop/til_server/app/assets/stylesheets/scaffolds.scss */
+/* line 48, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
 td {
   padding: 0 5px 7px;
 }
 
-/* line 39, /home/hungk/Desktop/til_server/app/assets/stylesheets/scaffolds.scss */
+/* line 53, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
 div.field, div.actions {
   margin-bottom: 10px;
 }
 
-/* line 44, /home/hungk/Desktop/til_server/app/assets/stylesheets/scaffolds.scss */
+/* line 58, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
 #notice {
   color: green;
 }
 
-/* line 48, /home/hungk/Desktop/til_server/app/assets/stylesheets/scaffolds.scss */
+/* line 62, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
 .field_with_errors {
   padding: 2px;
   background-color: red;
   display: table;
 }
 
-/* line 54, /home/hungk/Desktop/til_server/app/assets/stylesheets/scaffolds.scss */
+/* line 68, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
 #error_explanation {
   width: 450px;
   border: 2px solid red;
@@ -67,7 +82,7 @@ div.field, div.actions {
   margin-bottom: 20px;
   background-color: #f0f0f0;
 }
-/* line 61, /home/hungk/Desktop/til_server/app/assets/stylesheets/scaffolds.scss */
+/* line 75, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
 #error_explanation h2 {
   text-align: left;
   font-weight: bold;
@@ -77,22 +92,28 @@ div.field, div.actions {
   background-color: #c00;
   color: #fff;
 }
-/* line 71, /home/hungk/Desktop/til_server/app/assets/stylesheets/scaffolds.scss */
+/* line 85, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
 #error_explanation ul li {
   font-size: 12px;
   list-style: square;
 }
 
-/* line 77, /home/hungk/Desktop/til_server/app/assets/stylesheets/scaffolds.scss */
+/* line 91, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
 label {
   display: block;
 }
 
-/* line 81, /home/hungk/Desktop/til_server/app/assets/stylesheets/scaffolds.scss */
+/* line 95, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
 .scaffold textarea {
   width: 100%;
   min-height: 200px;
   resize: vertical;
+  padding: 5px;
+}
+
+/* line 102, /home/hungk/Desktop/til_server/app/assets/stylesheets/admin.scss */
+input[type=text] {
+  width: 100%;
   padding: 5px;
 }
 /*
@@ -181,4 +202,100 @@ h1.title a:hover {
 /* line 81, /home/hungk/Desktop/til_server/app/assets/stylesheets/application.scss */
 .item .title {
   padding: 20px 0 40px 0;
+}
+
+/* line 85, /home/hungk/Desktop/til_server/app/assets/stylesheets/application.scss */
+body {
+  color: #333;
+  font-family: 'Roboto', verdana, arial, helvetica, sans-serif;
+  line-height: 18px;
+}
+
+/* line 91, /home/hungk/Desktop/til_server/app/assets/stylesheets/application.scss */
+p, ol, ul, td {
+  font-family: 'Roboto', verdana, arial, helvetica, sans-serif;
+  line-height: 18px;
+}
+
+/* line 96, /home/hungk/Desktop/til_server/app/assets/stylesheets/application.scss */
+pre {
+  background-color: #eee;
+  font-size: 13px;
+  margin: 1em 0;
+}
+
+/* line 102, /home/hungk/Desktop/til_server/app/assets/stylesheets/application.scss */
+code {
+  background: #def;
+  padding: 2px;
+}
+
+/* line 107, /home/hungk/Desktop/til_server/app/assets/stylesheets/application.scss */
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* line 112, /home/hungk/Desktop/til_server/app/assets/stylesheets/application.scss */
+th {
+  padding-bottom: 5px;
+}
+
+/* line 116, /home/hungk/Desktop/til_server/app/assets/stylesheets/application.scss */
+td {
+  padding: 0 5px 7px;
+}
+
+/* line 121, /home/hungk/Desktop/til_server/app/assets/stylesheets/application.scss */
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+/* line 126, /home/hungk/Desktop/til_server/app/assets/stylesheets/application.scss */
+#notice {
+  color: green;
+}
+
+/* line 130, /home/hungk/Desktop/til_server/app/assets/stylesheets/application.scss */
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+/* line 136, /home/hungk/Desktop/til_server/app/assets/stylesheets/application.scss */
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px 7px 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+/* line 143, /home/hungk/Desktop/til_server/app/assets/stylesheets/application.scss */
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px -7px 0;
+  background-color: #c00;
+  color: #fff;
+}
+/* line 153, /home/hungk/Desktop/til_server/app/assets/stylesheets/application.scss */
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+/* line 159, /home/hungk/Desktop/til_server/app/assets/stylesheets/application.scss */
+label {
+  display: block;
+}
+
+/* line 163, /home/hungk/Desktop/til_server/app/assets/stylesheets/application.scss */
+.scaffold textarea {
+  width: 100%;
+  min-height: 200px;
+  resize: vertical;
+  padding: 5px;
 }
