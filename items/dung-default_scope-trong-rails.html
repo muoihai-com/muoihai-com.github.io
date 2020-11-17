@@ -20,18 +20,28 @@
   <h1 class="title"><a href="/">Today I Learned</a></h1>
   <div class="item">
     <h2 class="title">
-      <a href="items/xem-cac-thu-muc-duoc-autoload-trong-rails.html">Xem các thư mục được autoload trong rails</a>
+      <a href="items/dung-default_scope-trong-rails.html">Dùng default_scope trong rails</a>
     </h2>
     
+      <div class="tags">
+        
+          <a href="/tags/rails.html" class="tag">
+            Rails
+          </a>
+        
+      </div>
+    
     <div class="content">
-      <p>Gọi hàm sau</p>
+      <p>Cách sử dụng</p>
 
-<pre><code class="rb">ActiveSupport::Dependencies.autoload_paths
+<pre><code>default_scope { order updated_at: :desc }
 </code></pre>
 
-<p>Thêm thư mục autoload, trong file: <code>config/application.rb</code></p>
+<p>Hoặc ghi đè hàm <code>self.default_scope</code></p>
 
-<pre><code class="rb">config.autoload_paths &lt;&lt; Rails.root.join(&quot;app/builders&quot;)
+<pre><code>def sef.default_scope
+  order updated_at: :desc
+end
 </code></pre>
 
     </div>

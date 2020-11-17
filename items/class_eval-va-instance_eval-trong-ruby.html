@@ -20,19 +20,20 @@
   <h1 class="title"><a href="/">Today I Learned</a></h1>
   <div class="item">
     <h2 class="title">
-      <a href="items/xem-cac-thu-muc-duoc-autoload-trong-rails.html">Xem các thư mục được autoload trong rails</a>
+      <a href="items/class_eval-va-instance_eval-trong-ruby.html">class_eval và instance_eval trong ruby</a>
     </h2>
     
+      <div class="tags">
+        
+          <a href="/tags/ruby.html" class="tag">
+            Ruby
+          </a>
+        
+      </div>
+    
     <div class="content">
-      <p>Gọi hàm sau</p>
-
-<pre><code class="rb">ActiveSupport::Dependencies.autoload_paths
-</code></pre>
-
-<p>Thêm thư mục autoload, trong file: <code>config/application.rb</code></p>
-
-<pre><code class="rb">config.autoload_paths &lt;&lt; Rails.root.join(&quot;app/builders&quot;)
-</code></pre>
+      <p><code>class_eval</code> dùng để viết thêm instance method<br>
+<code>instance_eval</code> dùng để viết thêm class method</p>
 
     </div>
     <div class="footer">
