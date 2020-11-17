@@ -50,6 +50,14 @@
           <a href="items/xem-cac-thu-muc-duoc-autoload-trong-rails.html">Xem các thư mục được autoload trong rails</a>
         </h2>
         
+          <div class="tags">
+            
+              <a href="/tags/rails.html" class="tag">
+                Rails
+              </a>
+            
+          </div>
+        
         <div class="content">
           <p>Gọi hàm sau</p>
 
@@ -121,6 +129,39 @@ end
 
 <pre><code>class A
   include ActionView::Helpers::TranslationHelper
+end
+</code></pre>
+
+        </div>
+        <div class="footer">
+          <div class="created-at">
+            17/11/2020
+          </div>
+        </div>
+      </div>
+    
+      <div class="item">
+        <h2 class="title">
+          <a href="items/ket-hop-nhieu-expect-trong-rspec.html">Kết hợp nhiều expect trong rspec</a>
+        </h2>
+        
+          <div class="tags">
+            
+              <a href="/tags/rspec.html" class="tag">
+                Rspec
+              </a>
+            
+          </div>
+        
+        <div class="content">
+          <p>Khi expect mà có mong đợi nhiều điều kiện có thể dùng <code>.and</code></p>
+
+<pre><code class="ruby">RSpec.describe &quot;A compound and matcher&quot; do
+  let(:string) { &quot;foo bar bazz&quot; }
+
+  it &quot;passes when both are true&quot; do
+    expect(string).to start_with(&quot;foo&quot;).and end_with(&quot;bazz&quot;)
+  end
 end
 </code></pre>
 
