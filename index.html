@@ -173,6 +173,51 @@ end
         </div>
       </div>
     
+      <div class="item">
+        <h2 class="title">
+          <a href="items/ham-in_groups_of-cua-array.html">Hàm in_groups_of của Array</a>
+        </h2>
+        
+          <div class="tags">
+            
+              <a href="/tags/ruby.html" class="tag">
+                Ruby
+              </a>
+            
+          </div>
+        
+        <div class="content">
+          <p>Thông tin</p>
+
+<p><code>in_groups_of(number, fill_with = nil) public</code></p>
+
+<p>Hàm chia mảng, thành các phần bằng nhau, và lấp các phần tử thiếu bằng <code>fill_with</code></p>
+
+<pre><code class="ruby">%w(1 2 3 4 5 6 7 8 9 10).in_groups_of(3) {|group| p group}
+[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]
+[&quot;4&quot;, &quot;5&quot;, &quot;6&quot;]
+[&quot;7&quot;, &quot;8&quot;, &quot;9&quot;]
+[&quot;10&quot;, nil, nil]
+
+%w(1 2 3 4 5).in_groups_of(2, &#39;&amp;nbsp;&#39;) {|group| p group}
+[&quot;1&quot;, &quot;2&quot;]
+[&quot;3&quot;, &quot;4&quot;]
+[&quot;5&quot;, &quot;&amp;nbsp;&quot;]
+
+%w(1 2 3 4 5).in_groups_of(2, false) {|group| p group}
+[&quot;1&quot;, &quot;2&quot;]
+[&quot;3&quot;, &quot;4&quot;]
+[&quot;5&quot;]
+</code></pre>
+
+        </div>
+        <div class="footer">
+          <div class="created-at">
+            17/11/2020
+          </div>
+        </div>
+      </div>
+    
   </div>
 </div>
 
