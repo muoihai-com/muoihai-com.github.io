@@ -22,6 +22,40 @@
     
       <div class="item">
         <h2 class="title">
+          <a href="items/ban-error-tiep-sau-khi-bat-loi.html">Bắn error tiếp sau khi bắt lỗi</a>
+        </h2>
+        
+          <div class="tags">
+            
+              <a href="/tags/ruby.html" class="tag">
+                Ruby
+              </a>
+            
+          </div>
+        
+        <div class="content">
+          <p>code mẫu</p>
+
+<pre><code class="ruby">begin
+  this_will_fail!
+rescue Failure =&gt; error
+  log.error error.message
+  raise
+end
+</code></pre>
+
+<p>Gọi <code>raiser</code> và không truyền tham số nào vào thì nó sẽ bắn ra error cuối cùng.</p>
+
+        </div>
+        <div class="footer">
+          <div class="created-at">
+            18/11/2020
+          </div>
+        </div>
+      </div>
+    
+      <div class="item">
+        <h2 class="title">
           <a href="items/ham-slice-cua-hash.html">Hàm slice của Hash</a>
         </h2>
         

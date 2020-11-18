@@ -18,39 +18,38 @@
   <body>
     <div class="container">
   <h1 class="title"><a href="/">Today I Learned</a></h1>
-  <div class="tag">
-    <h2 class="name">
-      Ruby
+  <div class="item">
+    <h2 class="title">
+      <a href="items/ban-error-tiep-sau-khi-bat-loi.html">Bắn error tiếp sau khi bắt lỗi</a>
     </h2>
     
-      <div class="tag_items">
+      <div class="tags">
         
-          <div class="tag_item">
-            <a href="/items/ban-error-tiep-sau-khi-bat-loi.html">
-              Bắn error tiếp sau khi bắt lỗi
-            </a>
-          </div>
-        
-          <div class="tag_item">
-            <a href="/items/ham-slice-cua-hash.html">
-              Hàm slice của Hash
-            </a>
-          </div>
-        
-          <div class="tag_item">
-            <a href="/items/ham-in_groups_of-cua-array.html">
-              Hàm in_groups_of của Array
-            </a>
-          </div>
-        
-          <div class="tag_item">
-            <a href="/items/class_eval-va-instance_eval-trong-ruby.html">
-              class_eval và instance_eval trong ruby
-            </a>
-          </div>
+          <a href="/tags/ruby.html" class="tag">
+            Ruby
+          </a>
         
       </div>
     
+    <div class="content">
+      <p>code mẫu</p>
+
+<pre><code class="ruby">begin
+  this_will_fail!
+rescue Failure =&gt; error
+  log.error error.message
+  raise
+end
+</code></pre>
+
+<p>Gọi <code>raiser</code> và không truyền tham số nào vào thì nó sẽ bắn ra error cuối cùng.</p>
+
+    </div>
+    <div class="footer">
+      <div class="created-at">
+        18/11/2020
+      </div>
+    </div>
   </div>
 </div>
 
