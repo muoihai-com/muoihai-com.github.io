@@ -140,7 +140,7 @@ pre {
 code {
   word-break: break-all;
   background: #def;
-  padding: 2px;
+  padding: 2px 4px;
 }
 
 /* line 139, /Users/kieu.quoc.hung/Desktop/til_server/app/assets/stylesheets/application.scss */

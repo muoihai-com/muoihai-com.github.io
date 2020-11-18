@@ -18,33 +18,35 @@
   <body>
     <div class="container">
   <h1 class="title"><a href="/">Today I Learned</a></h1>
-  <div class="tag">
-    <h2 class="name">
-      Rails
+  <div class="item">
+    <h2 class="title">
+      <a href="items/ham-slice-cua-hash.html">Hàm slice của Hash</a>
     </h2>
     
-      <div class="tag_items">
+      <div class="tags">
         
-          <div class="tag_item">
-            <a href="/items/dung-default_scope-trong-rails.html">
-              Dùng default_scope trong rails
-            </a>
-          </div>
-        
-          <div class="tag_item">
-            <a href="/items/include-cac-method-i18n-trong-rails.html">
-              Include các method I18n trong rails
-            </a>
-          </div>
-        
-          <div class="tag_item">
-            <a href="/items/xem-cac-thu-muc-duoc-autoload-trong-rails.html">
-              Xem các thư mục được autoload trong rails
-            </a>
-          </div>
+          <a href="/tags/ruby.html" class="tag">
+            Ruby
+          </a>
         
       </div>
     
+    <div class="content">
+      <p>Giả sử bạn có một Hash như sau: <code>a = {a: 1, b: 2, c: 3}</code></p>
+
+<p>Và bạn muốn tạo một Hash mới với chỉ một số key của Hash cũ, có thể dùng hàm <code>slice(*keys)</code> sau:</p>
+
+<pre><code>a.slice(:a, :b)
+
+=&gt; {a:1, b: 2}
+</code></pre>
+
+    </div>
+    <div class="footer">
+      <div class="created-at">
+        18/11/2020
+      </div>
+    </div>
   </div>
 </div>
 
