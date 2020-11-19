@@ -20,34 +20,27 @@
   <h1 class="title"><a href="/">Today I Learned</a></h1>
   <div class="item">
     <h2 class="title">
-      <a href="items/ban-error-tiep-sau-khi-bat-loi.html">Bắn error tiếp sau khi bắt lỗi</a>
+      <a href="items/lay-ban-ghi-ngau-nhien-tu-database-trong-rails.html">Lấy bản ghi ngẫu nhiên từ database trong Rails</a>
     </h2>
     
       <div class="tags">
         
-          <a href="/tags/ruby.html" class="tag">
-            Ruby
+          <a href="/tags/rails.html" class="tag">
+            Rails
           </a>
         
       </div>
     
     <div class="content">
-      <p>code mẫu</p>
+      <p>Dùng lệnh sau</p>
 
-<pre><code class="ruby">begin
-  this_will_fail!
-rescue Failure =&gt; error
-  log.error error.message
-  raise
-end
+<pre><code class="ruby">Model.order(&quot;RAND()&quot;).first
 </code></pre>
-
-<p>Gọi <code>raise</code> và không truyền tham số nào vào thì nó sẽ bắn ra error cuối cùng.</p>
 
     </div>
     <div class="footer">
       <div class="created-at">
-        18/11/2020
+        19/11/2020
       </div>
     </div>
   </div>
