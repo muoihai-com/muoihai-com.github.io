@@ -1,6 +1,7 @@
 https://muoihai.com/index.html
 https://muoihai.com/items/ban-error-tiep-sau-khi-bat-loi.html
 https://muoihai.com/items/class_eval-va-instance_eval-trong-ruby.html
+https://muoihai.com/items/convert-file-wmf-thanh-anh.html
 https://muoihai.com/items/dung-default_scope-trong-rails.html
 https://muoihai.com/items/ham-in_groups_of-cua-array.html
 https://muoihai.com/items/ham-slice-cua-hash.html
@@ -9,10 +10,12 @@ https://muoihai.com/items/ket-hop-nhieu-expect-trong-rspec.html
 https://muoihai.com/items/lay-ban-ghi-ngau-nhien-tu-database-trong-rails.html
 https://muoihai.com/items/lazy-load-css-cho-trang-web.html
 https://muoihai.com/items/select-max-trong-rails.html
+https://muoihai.com/items/unzip-file-docx.html
 https://muoihai.com/items/xem-cac-thu-muc-duoc-autoload-trong-rails.html
 https://muoihai.com/items/xem-danh-sach-routes-voi-gem-grape.html
 https://muoihai.com/tags/command.html
 https://muoihai.com/tags/rails.html
+https://muoihai.com/tags/regex.html
 https://muoihai.com/tags/rspec.html
 https://muoihai.com/tags/ruby.html
 https://muoihai.com/tags/website.html

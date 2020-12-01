@@ -22,6 +22,67 @@
     
       <div class="item">
         <h2 class="title">
+          <a href="items/convert-file-wmf-thanh-anh.html">Convert file wmf thành ảnh</a>
+        </h2>
+        
+          <div class="tags">
+            
+              <a href="/tags/website.html" class="tag">
+                website
+              </a>
+            
+          </div>
+        
+        <div class="content">
+          <p>Để chuyển đổi file wmf thì cần qua 2 lần convert sau:<br>
+- Convert file thành pdf<br>
+- Convert pdf thành png</p>
+
+<pre><code class="shell">unoconv -f pdf -o tmp/temp.pdf image1.wmf
+convert -trim tmp/temp.pdf -colorspace RGB tmp/temp.png
+</code></pre>
+
+<p>Ở đây mình sử dụng <code>unoconv</code>, ngoài ra có thể sử dụng <code>libreoffice</code>. Để convert pdf thành png thì sử dụng <code>ImageMagick</code></p>
+
+        </div>
+        <div class="footer">
+          <div class="created-at">
+            01/12/2020
+          </div>
+        </div>
+      </div>
+    
+      <div class="item">
+        <h2 class="title">
+          <a href="items/unzip-file-docx.html">Unzip file docx</a>
+        </h2>
+        
+          <div class="tags">
+            
+              <a href="/tags/command.html" class="tag">
+                Command
+              </a>
+            
+          </div>
+        
+        <div class="content">
+          <p>Đang tìm cách convert file docx ra xml thì mình tìm hiểu được</p>
+
+<p>File docx bao gồm nhiều file xml bên trong, và bạn có thể unzip nó</p>
+
+<pre><code class="shell">unzip xxx.docx -d [folder]
+</code></pre>
+
+        </div>
+        <div class="footer">
+          <div class="created-at">
+            27/11/2020
+          </div>
+        </div>
+      </div>
+    
+      <div class="item">
+        <h2 class="title">
           <a href="items/select-max-trong-rails.html">Select max trong rails</a>
         </h2>
         
