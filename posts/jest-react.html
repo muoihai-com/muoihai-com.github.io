@@ -1,0 +1,181 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/b15faea3e8a4797f.css" as="style"/><link rel="stylesheet" href="/_next/static/css/b15faea3e8a4797f.css" data-n-g=""/><link rel="preload" href="/_next/static/css/0c14820882fdae38.css" as="style"/><link rel="stylesheet" href="/_next/static/css/0c14820882fdae38.css" data-n-p=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-5f4595e5518b5600.js" defer=""></script><script src="/_next/static/chunks/main-a054bbf31fb90f6a.js" defer=""></script><script src="/_next/static/chunks/pages/_app-2fa1a84ec5e1b202.js" defer=""></script><script src="/_next/static/chunks/pages/posts/%5Bslug%5D-8b51fb13426027e3.js" defer=""></script><script src="/_next/static/1PR9-_JnZkYee-beKfa1V/_buildManifest.js" defer=""></script><script src="/_next/static/1PR9-_JnZkYee-beKfa1V/_ssgManifest.js" defer=""></script><script src="/_next/static/1PR9-_JnZkYee-beKfa1V/_middlewareManifest.js" defer=""></script></head><body><div id="__next" data-reactroot=""><div class="styles_article__gKJAH"><a href="/">← Quay về trang chủ</a><div class="styles_htmlBody__Y9rnw"><h1>Tìm hiểu về Jestjs, viết unit test cho javascript</h1>
+<p>Jestjs là một JavaScript Testing Framework khá là dễ sử dụng và cài đặt, tuy nhiên vẫn đầy đủ tính năng để bạn có thể sử dụng :clap:
+Bài viết này mình xin giới thiệu một số tính năng cơ bản của jest cùng với một số ví dụ.</p>
+<h2>Cài đặt</h2>
+<p>Cài đặt Jest khá đơn giản:</p>
+<pre><code class="hljs language-sql">yarn <span class="hljs-keyword">add</span> <span class="hljs-comment">--dev jest</span>
+</code></pre>
+<p>hoặc</p>
+<pre><code class="hljs language-css">npm install <span class="hljs-attr">--save-dev</span> jest
+</code></pre>
+<p>Sau đó thêm đoạn code sau vào file package.json:</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"scripts"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"test"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"jest"</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Tiếp theo mình có ví dụ một file test: <code>math.js</code></p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">sum</span>(<span class="hljs-params">a, b</span>) {
+  <span class="hljs-keyword">return</span> a + b;
+}
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-class">MathJS</span> = {
+  sum,
+};
+
+<span class="hljs-variable hljs-language">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title hljs-class">MathJS</span>;
+</code></pre>
+<p>Để viết test cho file trên mình tạo file <code>test/math.test.js</code>, đuôi file là test.js sẽ nói cho jest biết đây là file test của bạn.</p>
+<pre><code class="hljs language-scss">const MathJS = <span class="hljs-built_in">require</span>('../math');
+
+<span class="hljs-built_in">it</span>('Adds <span class="hljs-number">1</span> + <span class="hljs-number">1</span> to equals <span class="hljs-number">2</span>', () => {
+  <span class="hljs-built_in">expect</span>(MathJS.sum(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))<span class="hljs-selector-class">.toBe</span>(<span class="hljs-number">2</span>);
+});
+
+</code></pre>
+<p>Sau đó chạy <code>yarn test</code> hoặc <code>npm run test</code>.</p>
+<p><img src="https://images.viblo.asia/9692954e-c671-4dcd-b028-dc188e860bea.png" alt=""></p>
+<h1>Các Matchers trong Jest</h1>
+<p>Ở trong đoạn code trên:</p>
+<pre><code class="hljs language-scss"><span class="hljs-built_in">expect</span>(MathJS.sum(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))<span class="hljs-selector-class">.toBe</span>(<span class="hljs-number">2</span>);
+</code></pre>
+<p><code>.toBe()</code> chính là một matcher trong jest. Nó giống như phép so sánh bằng bình thường vậy. Ví dụ:</p>
+<pre><code class="hljs language-scss"><span class="hljs-built_in">expect</span>(result)<span class="hljs-selector-class">.toBe</span>(<span class="hljs-number">2</span>);
+<span class="hljs-built_in">expect</span>(result)<span class="hljs-selector-class">.toBe</span>(true);
+<span class="hljs-built_in">expect</span>(result)<span class="hljs-selector-class">.toBe</span>({a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>});
+</code></pre>
+<p>Tuy nhiên khi so sánh một Object bạn nên sử dụng <code>.toEqual()</code>
+Lý do là vì <code>.toBe</code> thực tế sử dụng <code>===</code> để so sánh và đưa ra kết quả. Và chúng ta đều biết trong javascript:</p>
+<pre><code class="hljs language-js">a = {};
+b = {};
+a === b;
+=> <span class="hljs-literal">false</span>
+</code></pre>
+<p>Còn <code>.toEqual()</code> theo như Jest sẽ lần lượt kiểm tra tất các trường của Object, hoặc mảng để so sánh.
+Vì vậy thay vì viết:</p>
+<pre><code class="hljs language-scss"><span class="hljs-built_in">expect</span>(result)<span class="hljs-selector-class">.toBe</span>({a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>});
+</code></pre>
+<p>Hãy viết:</p>
+<pre><code class="hljs language-scss"><span class="hljs-built_in">expect</span>(result)<span class="hljs-selector-class">.toEqual</span>({a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>});
+</code></pre>
+<p>Ngoài ra còn các matchers khác:</p>
+<h3>Truthiness</h3>
+<ul>
+<li><code>toBeNull</code> so sánh với giá trị <code>null</code>.</li>
+<li><code>toBeUndefined</code> so sánh với giá trị <code>undefined</code>.</li>
+<li><code>toBeDefined</code> là hàm cho kết quả ngược lại <code>toBeUndefined</code>.</li>
+<li><code>toBeTruthy</code> so sánh với giá trị true.</li>
+<li><code>toBeFalsy</code> so sánh với giá trị false.</li>
+</ul>
+<h3>Numbers</h3>
+<pre><code class="hljs language-scss"><span class="hljs-built_in">it</span>('two plus two', () => {
+  const value = <span class="hljs-number">2</span> + <span class="hljs-number">2</span>;
+  <span class="hljs-built_in">expect</span>(value)<span class="hljs-selector-class">.toBeGreaterThan</span>(<span class="hljs-number">3</span>);
+  <span class="hljs-built_in">expect</span>(value)<span class="hljs-selector-class">.toBeGreaterThanOrEqual</span>(<span class="hljs-number">3.5</span>);
+  <span class="hljs-built_in">expect</span>(value)<span class="hljs-selector-class">.toBeLessThan</span>(<span class="hljs-number">5</span>);
+  <span class="hljs-built_in">expect</span>(value)<span class="hljs-selector-class">.toBeLessThanOrEqual</span>(<span class="hljs-number">4.5</span>);
+
+  <span class="hljs-comment">// toBe and toEqual are equivalent for numbers</span>
+  <span class="hljs-built_in">expect</span>(value)<span class="hljs-selector-class">.toBe</span>(<span class="hljs-number">4</span>);
+  <span class="hljs-built_in">expect</span>(value)<span class="hljs-selector-class">.toEqual</span>(<span class="hljs-number">4</span>);
+});
+</code></pre>
+<p>Đối với số thập phân, bạn nên sử dụng <code>toBeCloseTo</code>:</p>
+<pre><code class="hljs language-scss"><span class="hljs-built_in">it</span>('adding floating point numbers', () => {
+  const value = <span class="hljs-number">0.1</span> + <span class="hljs-number">0.2</span>;
+  <span class="hljs-comment">//expect(value).toBe(0.3);           This won't work because of rounding error</span>
+  <span class="hljs-built_in">expect</span>(value)<span class="hljs-selector-class">.toBeCloseTo</span>(<span class="hljs-number">0.3</span>); <span class="hljs-comment">// This works.</span>
+});
+</code></pre>
+<h3>String</h3>
+<p>Bạn có thể kiểm tra một đoạn văn bản với regular expressions bằng <code>toMatch</code>:</p>
+<pre><code class="hljs language-javascript"><span class="hljs-title hljs-function">it</span>(<span class="hljs-string">'there is no I in team'</span>, <span class="hljs-function">() =></span> {
+  <span class="hljs-title hljs-function">expect</span>(<span class="hljs-string">'team'</span>).<span class="hljs-property">not</span>.<span class="hljs-title hljs-function">toMatch</span>(<span class="hljs-regexp">/I/</span>);
+});
+
+<span class="hljs-title hljs-function">it</span>(<span class="hljs-string">'but there is a "stop" in Christoph'</span>, <span class="hljs-function">() =></span> {
+  <span class="hljs-title hljs-function">expect</span>(<span class="hljs-string">'Christoph'</span>).<span class="hljs-title hljs-function">toMatch</span>(<span class="hljs-regexp">/stop/</span>);
+});
+</code></pre>
+<h3>Array</h3>
+<p>Để kiểm tra giá trị có trong một mảng, bạn có thể dùng toContain:</p>
+<pre><code class="hljs language-scss">const array = <span class="hljs-selector-attr">[1, 2, 10, 1000]</span>;
+<span class="hljs-built_in">it</span>('array has <span class="hljs-number">1000</span> on it', () => {
+  <span class="hljs-built_in">expect</span>(array)<span class="hljs-selector-class">.toContain</span>(<span class="hljs-number">1000</span>);
+});
+</code></pre>
+<h3>Exceptions</h3>
+<p>Để kiểm tra một lỗi có thể xảy ra bạn có thể sử dụng <code>toThrow</code>:</p>
+<pre><code class="hljs language-scss">function <span class="hljs-built_in">compileAndroidCode</span>() {
+  throw new <span class="hljs-built_in">ConfigError</span>('you are using the wrong JDK');
+}
+
+<span class="hljs-built_in">test</span>('compiling android goes as expected', () => {
+  <span class="hljs-built_in">expect</span>(compileAndroidCode)<span class="hljs-selector-class">.toThrow</span>();
+  <span class="hljs-built_in">expect</span>(compileAndroidCode)<span class="hljs-selector-class">.toThrow</span>(ConfigError);
+
+  <span class="hljs-comment">// You can also use the exact error message or a regexp</span>
+  <span class="hljs-built_in">expect</span>(compileAndroidCode)<span class="hljs-selector-class">.toThrow</span>('you are using the wrong JDK');
+  <span class="hljs-built_in">expect</span>(compileAndroidCode)<span class="hljs-selector-class">.toThrow</span>(/JDK/);
+});
+</code></pre>
+<h1>Một số ví dụ</h1>
+<h2>Test một action trong redux</h2>
+<pre><code class="hljs language-ini">const <span class="hljs-attr">CHANGE_EMAIL</span> = <span class="hljs-string">'CHANGE_EMAIL'</span><span class="hljs-comment">;</span>
+
+function changeEmail(email) {
+  return {
+    type: CHANGE_EMAIL,
+    email
+  }
+}
+
+it('should render type and email of change email action', () => {
+  const <span class="hljs-attr">email</span> = <span class="hljs-string">'test@tt.com'</span><span class="hljs-comment">;</span>
+  const <span class="hljs-attr">expected</span> = {
+    type: CHANGE_EMAIL,
+    email,
+  }
+
+  expect(changeEmail(email)).toEqual(expected)<span class="hljs-comment">;</span>
+})<span class="hljs-comment">;</span>
+</code></pre>
+<h2>Test một event trong Jquery</h2>
+<pre><code class="hljs language-scss"><span class="hljs-built_in">it</span>('should fire a alert', () => {
+  const alert = jest<span class="hljs-selector-class">.fn</span>();
+
+  document<span class="hljs-selector-class">.body</span><span class="hljs-selector-class">.innerHTML</span> =
+    '&#x3C;<span class="hljs-selector-tag">div</span>>' +
+    '  &#x3C;<span class="hljs-selector-tag">span</span> id="username" />' +
+    '  &#x3C;<span class="hljs-selector-tag">button</span> id="<span class="hljs-selector-tag">button</span>" />' +
+    '&#x3C;/<span class="hljs-selector-tag">div</span>>';
+
+  $('#button')<span class="hljs-selector-class">.click</span>(() => {
+    <span class="hljs-built_in">alert</span>('click');
+  });
+
+  $('#button')<span class="hljs-selector-class">.click</span>();
+  <span class="hljs-built_in">expect</span>(alert)<span class="hljs-selector-class">.toBeCalled</span>();
+
+  <span class="hljs-comment">// the mock function is called one time</span>
+  <span class="hljs-built_in">expect</span>(alert.mock.calls.length)<span class="hljs-selector-class">.toBe</span>(<span class="hljs-number">1</span>);
+
+  <span class="hljs-comment">// The first argument of the first call to the function was click</span>
+  <span class="hljs-built_in">expect</span>(alert.mock.calls[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>])<span class="hljs-selector-class">.toBe</span>('click');
+});
+</code></pre>
+<p>Bạn có thể thấy <code>const alert = jest.fn();</code>. Đây là một tính năng trong Jest giúp bạn mock một function. Hay mô phỏng lại hàm cần test.</p>
+<h2>Test với module axios</h2>
+<pre><code class="hljs language-kotlin"><span class="hljs-keyword">const</span> axios = require(<span class="hljs-string">'axios'</span>);
+
+jest.mock(<span class="hljs-string">'axios'</span>, () => ({
+  <span class="hljs-keyword">get</span>: jest.fn().mockResolvedValue({ <span class="hljs-keyword">data</span>: { message: <span class="hljs-string">'hello'</span> }})
+}));
+
+test(<span class="hljs-string">'mock axios.get'</span>, async () => {
+  <span class="hljs-keyword">const</span> response = await axios.<span class="hljs-keyword">get</span>(<span class="hljs-string">'https://test.com/t/1'</span>);
+  <span class="hljs-keyword">expect</span>(response.<span class="hljs-keyword">data</span>).toEqual({ foo: <span class="hljs-string">'bar'</span> });
+});
+</code></pre>
+<p>Trong ví dụ này mình đã mock module axios, và đặt giá trị trả về cho hàm get. Như vậy khi test bạn sẽ không cần phải gửi request thật, tránh mất thời gian. Các module khác bạn cũng có thể làm cách tương tự.</p></div></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"slug":"jest-react","title":"Tìm hiểu về Jestjs, viết unit test cho javascript","date":"2022-03-05","description":"Jestjs là một JavaScript Testing Framework khá là dễ sử dụng và cài đặt, tuy nhiên vẫn đầy đủ tính năng để bạn có thể sử dụng. Bài viết này mình xin giới thiệu một số tính năng cơ bản của jest cùng với một số ví dụ.","tags":["reactjs"],"content":"\u003ch1\u003eTìm hiểu về Jestjs, viết unit test cho javascript\u003c/h1\u003e\n\u003cp\u003eJestjs là một JavaScript Testing Framework khá là dễ sử dụng và cài đặt, tuy nhiên vẫn đầy đủ tính năng để bạn có thể sử dụng :clap:\r\nBài viết này mình xin giới thiệu một số tính năng cơ bản của jest cùng với một số ví dụ.\u003c/p\u003e\n\u003ch2\u003eCài đặt\u003c/h2\u003e\n\u003cp\u003eCài đặt Jest khá đơn giản:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-sql\"\u003eyarn \u003cspan class=\"hljs-keyword\"\u003eadd\u003c/span\u003e \u003cspan class=\"hljs-comment\"\u003e--dev jest\u003c/span\u003e\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003ehoặc\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-css\"\u003enpm install \u003cspan class=\"hljs-attr\"\u003e--save-dev\u003c/span\u003e jest\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eSau đó thêm đoạn code sau vào file package.json:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-json\"\u003e\u003cspan class=\"hljs-punctuation\"\u003e{\u003c/span\u003e\r\n  \u003cspan class=\"hljs-attr\"\u003e\"scripts\"\u003c/span\u003e\u003cspan class=\"hljs-punctuation\"\u003e:\u003c/span\u003e \u003cspan class=\"hljs-punctuation\"\u003e{\u003c/span\u003e\r\n    \u003cspan class=\"hljs-attr\"\u003e\"test\"\u003c/span\u003e\u003cspan class=\"hljs-punctuation\"\u003e:\u003c/span\u003e \u003cspan class=\"hljs-string\"\u003e\"jest\"\u003c/span\u003e\r\n  \u003cspan class=\"hljs-punctuation\"\u003e}\u003c/span\u003e\r\n\u003cspan class=\"hljs-punctuation\"\u003e}\u003c/span\u003e\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eTiếp theo mình có ví dụ một file test: \u003ccode\u003emath.js\u003c/code\u003e\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-js\"\u003e\u003cspan class=\"hljs-keyword\"\u003efunction\u003c/span\u003e \u003cspan class=\"hljs-title hljs-function\"\u003esum\u003c/span\u003e(\u003cspan class=\"hljs-params\"\u003ea, b\u003c/span\u003e) {\r\n  \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e a + b;\r\n}\r\n\r\n\u003cspan class=\"hljs-keyword\"\u003econst\u003c/span\u003e \u003cspan class=\"hljs-title hljs-class\"\u003eMathJS\u003c/span\u003e = {\r\n  sum,\r\n};\r\n\r\n\u003cspan class=\"hljs-variable hljs-language\"\u003emodule\u003c/span\u003e.\u003cspan class=\"hljs-property\"\u003eexports\u003c/span\u003e = \u003cspan class=\"hljs-title hljs-class\"\u003eMathJS\u003c/span\u003e;\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eĐể viết test cho file trên mình tạo file \u003ccode\u003etest/math.test.js\u003c/code\u003e, đuôi file là test.js sẽ nói cho jest biết đây là file test của bạn.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-scss\"\u003econst MathJS = \u003cspan class=\"hljs-built_in\"\u003erequire\u003c/span\u003e('../math');\r\n\r\n\u003cspan class=\"hljs-built_in\"\u003eit\u003c/span\u003e('Adds \u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e + \u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e to equals \u003cspan class=\"hljs-number\"\u003e2\u003c/span\u003e', () =\u003e {\r\n  \u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(MathJS.sum(\u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e, \u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e))\u003cspan class=\"hljs-selector-class\"\u003e.toBe\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e2\u003c/span\u003e);\r\n});\r\n\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eSau đó chạy \u003ccode\u003eyarn test\u003c/code\u003e hoặc \u003ccode\u003enpm run test\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://images.viblo.asia/9692954e-c671-4dcd-b028-dc188e860bea.png\" alt=\"\"\u003e\u003c/p\u003e\n\u003ch1\u003eCác Matchers trong Jest\u003c/h1\u003e\n\u003cp\u003eỞ trong đoạn code trên:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-scss\"\u003e\u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(MathJS.sum(\u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e, \u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e))\u003cspan class=\"hljs-selector-class\"\u003e.toBe\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e2\u003c/span\u003e);\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003ccode\u003e.toBe()\u003c/code\u003e chính là một matcher trong jest. Nó giống như phép so sánh bằng bình thường vậy. Ví dụ:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-scss\"\u003e\u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(result)\u003cspan class=\"hljs-selector-class\"\u003e.toBe\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e2\u003c/span\u003e);\r\n\u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(result)\u003cspan class=\"hljs-selector-class\"\u003e.toBe\u003c/span\u003e(true);\r\n\u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(result)\u003cspan class=\"hljs-selector-class\"\u003e.toBe\u003c/span\u003e({a: \u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e, b: \u003cspan class=\"hljs-number\"\u003e2\u003c/span\u003e});\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eTuy nhiên khi so sánh một Object bạn nên sử dụng \u003ccode\u003e.toEqual()\u003c/code\u003e\r\nLý do là vì \u003ccode\u003e.toBe\u003c/code\u003e thực tế sử dụng \u003ccode\u003e===\u003c/code\u003e để so sánh và đưa ra kết quả. Và chúng ta đều biết trong javascript:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-js\"\u003ea = {};\r\nb = {};\r\na === b;\r\n=\u003e \u003cspan class=\"hljs-literal\"\u003efalse\u003c/span\u003e\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eCòn \u003ccode\u003e.toEqual()\u003c/code\u003e theo như Jest sẽ lần lượt kiểm tra tất các trường của Object, hoặc mảng để so sánh.\r\nVì vậy thay vì viết:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-scss\"\u003e\u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(result)\u003cspan class=\"hljs-selector-class\"\u003e.toBe\u003c/span\u003e({a: \u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e, b: \u003cspan class=\"hljs-number\"\u003e2\u003c/span\u003e});\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eHãy viết:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-scss\"\u003e\u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(result)\u003cspan class=\"hljs-selector-class\"\u003e.toEqual\u003c/span\u003e({a: \u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e, b: \u003cspan class=\"hljs-number\"\u003e2\u003c/span\u003e});\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eNgoài ra còn các matchers khác:\u003c/p\u003e\n\u003ch3\u003eTruthiness\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003etoBeNull\u003c/code\u003e so sánh với giá trị \u003ccode\u003enull\u003c/code\u003e.\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003etoBeUndefined\u003c/code\u003e so sánh với giá trị \u003ccode\u003eundefined\u003c/code\u003e.\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003etoBeDefined\u003c/code\u003e là hàm cho kết quả ngược lại \u003ccode\u003etoBeUndefined\u003c/code\u003e.\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003etoBeTruthy\u003c/code\u003e so sánh với giá trị true.\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003etoBeFalsy\u003c/code\u003e so sánh với giá trị false.\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003eNumbers\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-scss\"\u003e\u003cspan class=\"hljs-built_in\"\u003eit\u003c/span\u003e('two plus two', () =\u003e {\r\n  const value = \u003cspan class=\"hljs-number\"\u003e2\u003c/span\u003e + \u003cspan class=\"hljs-number\"\u003e2\u003c/span\u003e;\r\n  \u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(value)\u003cspan class=\"hljs-selector-class\"\u003e.toBeGreaterThan\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e3\u003c/span\u003e);\r\n  \u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(value)\u003cspan class=\"hljs-selector-class\"\u003e.toBeGreaterThanOrEqual\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e3.5\u003c/span\u003e);\r\n  \u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(value)\u003cspan class=\"hljs-selector-class\"\u003e.toBeLessThan\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e);\r\n  \u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(value)\u003cspan class=\"hljs-selector-class\"\u003e.toBeLessThanOrEqual\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e4.5\u003c/span\u003e);\r\n\r\n  \u003cspan class=\"hljs-comment\"\u003e// toBe and toEqual are equivalent for numbers\u003c/span\u003e\r\n  \u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(value)\u003cspan class=\"hljs-selector-class\"\u003e.toBe\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e4\u003c/span\u003e);\r\n  \u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(value)\u003cspan class=\"hljs-selector-class\"\u003e.toEqual\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e4\u003c/span\u003e);\r\n});\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eĐối với số thập phân, bạn nên sử dụng \u003ccode\u003etoBeCloseTo\u003c/code\u003e:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-scss\"\u003e\u003cspan class=\"hljs-built_in\"\u003eit\u003c/span\u003e('adding floating point numbers', () =\u003e {\r\n  const value = \u003cspan class=\"hljs-number\"\u003e0.1\u003c/span\u003e + \u003cspan class=\"hljs-number\"\u003e0.2\u003c/span\u003e;\r\n  \u003cspan class=\"hljs-comment\"\u003e//expect(value).toBe(0.3);           This won't work because of rounding error\u003c/span\u003e\r\n  \u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(value)\u003cspan class=\"hljs-selector-class\"\u003e.toBeCloseTo\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e0.3\u003c/span\u003e); \u003cspan class=\"hljs-comment\"\u003e// This works.\u003c/span\u003e\r\n});\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch3\u003eString\u003c/h3\u003e\n\u003cp\u003eBạn có thể kiểm tra một đoạn văn bản với regular expressions bằng \u003ccode\u003etoMatch\u003c/code\u003e:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-javascript\"\u003e\u003cspan class=\"hljs-title hljs-function\"\u003eit\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e'there is no I in team'\u003c/span\u003e, \u003cspan class=\"hljs-function\"\u003e() =\u003e\u003c/span\u003e {\r\n  \u003cspan class=\"hljs-title hljs-function\"\u003eexpect\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e'team'\u003c/span\u003e).\u003cspan class=\"hljs-property\"\u003enot\u003c/span\u003e.\u003cspan class=\"hljs-title hljs-function\"\u003etoMatch\u003c/span\u003e(\u003cspan class=\"hljs-regexp\"\u003e/I/\u003c/span\u003e);\r\n});\r\n\r\n\u003cspan class=\"hljs-title hljs-function\"\u003eit\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e'but there is a \"stop\" in Christoph'\u003c/span\u003e, \u003cspan class=\"hljs-function\"\u003e() =\u003e\u003c/span\u003e {\r\n  \u003cspan class=\"hljs-title hljs-function\"\u003eexpect\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e'Christoph'\u003c/span\u003e).\u003cspan class=\"hljs-title hljs-function\"\u003etoMatch\u003c/span\u003e(\u003cspan class=\"hljs-regexp\"\u003e/stop/\u003c/span\u003e);\r\n});\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch3\u003eArray\u003c/h3\u003e\n\u003cp\u003eĐể kiểm tra giá trị có trong một mảng, bạn có thể dùng toContain:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-scss\"\u003econst array = \u003cspan class=\"hljs-selector-attr\"\u003e[1, 2, 10, 1000]\u003c/span\u003e;\r\n\u003cspan class=\"hljs-built_in\"\u003eit\u003c/span\u003e('array has \u003cspan class=\"hljs-number\"\u003e1000\u003c/span\u003e on it', () =\u003e {\r\n  \u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(array)\u003cspan class=\"hljs-selector-class\"\u003e.toContain\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e1000\u003c/span\u003e);\r\n});\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch3\u003eExceptions\u003c/h3\u003e\n\u003cp\u003eĐể kiểm tra một lỗi có thể xảy ra bạn có thể sử dụng \u003ccode\u003etoThrow\u003c/code\u003e:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-scss\"\u003efunction \u003cspan class=\"hljs-built_in\"\u003ecompileAndroidCode\u003c/span\u003e() {\r\n  throw new \u003cspan class=\"hljs-built_in\"\u003eConfigError\u003c/span\u003e('you are using the wrong JDK');\r\n}\r\n\r\n\u003cspan class=\"hljs-built_in\"\u003etest\u003c/span\u003e('compiling android goes as expected', () =\u003e {\r\n  \u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(compileAndroidCode)\u003cspan class=\"hljs-selector-class\"\u003e.toThrow\u003c/span\u003e();\r\n  \u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(compileAndroidCode)\u003cspan class=\"hljs-selector-class\"\u003e.toThrow\u003c/span\u003e(ConfigError);\r\n\r\n  \u003cspan class=\"hljs-comment\"\u003e// You can also use the exact error message or a regexp\u003c/span\u003e\r\n  \u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(compileAndroidCode)\u003cspan class=\"hljs-selector-class\"\u003e.toThrow\u003c/span\u003e('you are using the wrong JDK');\r\n  \u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(compileAndroidCode)\u003cspan class=\"hljs-selector-class\"\u003e.toThrow\u003c/span\u003e(/JDK/);\r\n});\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch1\u003eMột số ví dụ\u003c/h1\u003e\n\u003ch2\u003eTest một action trong redux\u003c/h2\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-ini\"\u003econst \u003cspan class=\"hljs-attr\"\u003eCHANGE_EMAIL\u003c/span\u003e = \u003cspan class=\"hljs-string\"\u003e'CHANGE_EMAIL'\u003c/span\u003e\u003cspan class=\"hljs-comment\"\u003e;\u003c/span\u003e\r\n\r\nfunction changeEmail(email) {\r\n  return {\r\n    type: CHANGE_EMAIL,\r\n    email\r\n  }\r\n}\r\n\r\nit('should render type and email of change email action', () =\u003e {\r\n  const \u003cspan class=\"hljs-attr\"\u003eemail\u003c/span\u003e = \u003cspan class=\"hljs-string\"\u003e'test@tt.com'\u003c/span\u003e\u003cspan class=\"hljs-comment\"\u003e;\u003c/span\u003e\r\n  const \u003cspan class=\"hljs-attr\"\u003eexpected\u003c/span\u003e = {\r\n    type: CHANGE_EMAIL,\r\n    email,\r\n  }\r\n\r\n  expect(changeEmail(email)).toEqual(expected)\u003cspan class=\"hljs-comment\"\u003e;\u003c/span\u003e\r\n})\u003cspan class=\"hljs-comment\"\u003e;\u003c/span\u003e\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch2\u003eTest một event trong Jquery\u003c/h2\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-scss\"\u003e\u003cspan class=\"hljs-built_in\"\u003eit\u003c/span\u003e('should fire a alert', () =\u003e {\r\n  const alert = jest\u003cspan class=\"hljs-selector-class\"\u003e.fn\u003c/span\u003e();\r\n\r\n  document\u003cspan class=\"hljs-selector-class\"\u003e.body\u003c/span\u003e\u003cspan class=\"hljs-selector-class\"\u003e.innerHTML\u003c/span\u003e =\r\n    '\u0026#x3C;\u003cspan class=\"hljs-selector-tag\"\u003ediv\u003c/span\u003e\u003e' +\r\n    '  \u0026#x3C;\u003cspan class=\"hljs-selector-tag\"\u003espan\u003c/span\u003e id=\"username\" /\u003e' +\r\n    '  \u0026#x3C;\u003cspan class=\"hljs-selector-tag\"\u003ebutton\u003c/span\u003e id=\"\u003cspan class=\"hljs-selector-tag\"\u003ebutton\u003c/span\u003e\" /\u003e' +\r\n    '\u0026#x3C;/\u003cspan class=\"hljs-selector-tag\"\u003ediv\u003c/span\u003e\u003e';\r\n\r\n  $('#button')\u003cspan class=\"hljs-selector-class\"\u003e.click\u003c/span\u003e(() =\u003e {\r\n    \u003cspan class=\"hljs-built_in\"\u003ealert\u003c/span\u003e('click');\r\n  });\r\n\r\n  $('#button')\u003cspan class=\"hljs-selector-class\"\u003e.click\u003c/span\u003e();\r\n  \u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(alert)\u003cspan class=\"hljs-selector-class\"\u003e.toBeCalled\u003c/span\u003e();\r\n\r\n  \u003cspan class=\"hljs-comment\"\u003e// the mock function is called one time\u003c/span\u003e\r\n  \u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(alert.mock.calls.length)\u003cspan class=\"hljs-selector-class\"\u003e.toBe\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e);\r\n\r\n  \u003cspan class=\"hljs-comment\"\u003e// The first argument of the first call to the function was click\u003c/span\u003e\r\n  \u003cspan class=\"hljs-built_in\"\u003eexpect\u003c/span\u003e(alert.mock.calls[\u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e][\u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e])\u003cspan class=\"hljs-selector-class\"\u003e.toBe\u003c/span\u003e('click');\r\n});\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eBạn có thể thấy \u003ccode\u003econst alert = jest.fn();\u003c/code\u003e. Đây là một tính năng trong Jest giúp bạn mock một function. Hay mô phỏng lại hàm cần test.\u003c/p\u003e\n\u003ch2\u003eTest với module axios\u003c/h2\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-kotlin\"\u003e\u003cspan class=\"hljs-keyword\"\u003econst\u003c/span\u003e axios = require(\u003cspan class=\"hljs-string\"\u003e'axios'\u003c/span\u003e);\r\n\r\njest.mock(\u003cspan class=\"hljs-string\"\u003e'axios'\u003c/span\u003e, () =\u003e ({\r\n  \u003cspan class=\"hljs-keyword\"\u003eget\u003c/span\u003e: jest.fn().mockResolvedValue({ \u003cspan class=\"hljs-keyword\"\u003edata\u003c/span\u003e: { message: \u003cspan class=\"hljs-string\"\u003e'hello'\u003c/span\u003e }})\r\n}));\r\n\r\ntest(\u003cspan class=\"hljs-string\"\u003e'mock axios.get'\u003c/span\u003e, async () =\u003e {\r\n  \u003cspan class=\"hljs-keyword\"\u003econst\u003c/span\u003e response = await axios.\u003cspan class=\"hljs-keyword\"\u003eget\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e'https://test.com/t/1'\u003c/span\u003e);\r\n  \u003cspan class=\"hljs-keyword\"\u003eexpect\u003c/span\u003e(response.\u003cspan class=\"hljs-keyword\"\u003edata\u003c/span\u003e).toEqual({ foo: \u003cspan class=\"hljs-string\"\u003e'bar'\u003c/span\u003e });\r\n});\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eTrong ví dụ này mình đã mock module axios, và đặt giá trị trả về cho hàm get. Như vậy khi test bạn sẽ không cần phải gửi request thật, tránh mất thời gian. Các module khác bạn cũng có thể làm cách tương tự.\u003c/p\u003e"},"__N_SSG":true},"page":"/posts/[slug]","query":{"slug":"jest-react"},"buildId":"1PR9-_JnZkYee-beKfa1V","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
