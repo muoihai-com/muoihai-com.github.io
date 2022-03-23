@@ -10,3 +10,4 @@ https://hungkieu.dev/posts/mot-so-ham-duoc-them-vao-object-rails
 https://hungkieu.dev/posts/pre-rendering
 https://hungkieu.dev/posts/select-max-min-rails
 https://hungkieu.dev/posts/sua-loi-excel-khong-nhan-file-csv-utf8-rails
+https://hungkieu.dev/posts/tao-mot-google-chrome-extension-voi-react
